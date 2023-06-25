@@ -29,12 +29,28 @@ const interfaceFunc:StringType =(param1:string,param2:string):string=>{
     return `${param1} ${param2}`
 }
 
-console.log(interfaceFunc("hey","soul"))
+
+
+
+
 
 //functions that returns functions: closure
 
+export type AdderType = (val:number)=>number
 
+export const createAdde: (num: number) => AdderType=(num:number)=>{
+    console.log(num);
+    
+    return (val:number)=>{
+        console.log(val)
+        return num+val
+    }
+}
 
+const addOne = createAdde(1);
+console.log(addOne(55))
+
+console.log(interfaceFunc("hey","soul"))
 console.log(myNewMutateFunc("hey"))
 console.log(reuseTypeFunc(2))
 
