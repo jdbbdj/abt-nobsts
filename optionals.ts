@@ -35,3 +35,10 @@ const getEmailRight = (user:User):string=>{
     return user?.info?.email ?? "";
 }
 
+//optional callback
+
+const addWithCallBack = (x:number,y:number,callback?:()=>void)=>{
+    console.log([x,y])
+    return callback?.()
+}
+
