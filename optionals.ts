@@ -11,3 +11,27 @@ const printIngredient: (quantity: string, ingredient: string,extra?:string) => v
 
 printIngredient("5","garlic")
 printIngredient("5","garlic","something more")
+
+
+interface User {
+    id:string;
+    info?:{
+        email?:string;
+    }
+}
+
+
+
+// avoid using exclamation point to override error
+const getEmail = (user:User):string=>{
+    if(user.info){
+        return user.info.email!;
+    }
+    return ""
+}
+
+//proper way
+const getEmailRight = (user:User):string=>{
+    return user?.info?.email ?? "";
+}
+
