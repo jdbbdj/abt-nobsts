@@ -55,10 +55,9 @@ const pickFunction = (name:string,id:string):PickMyUser=>{
 
 
 //Record
-
+// constructs an object whose property keys are keys and whose property values are type
 const mapById = (users:MyUser[]):Record<string,MyUser>=>{
     return users.reduce((a,v)=>{
-
         return {
             ...a,
             [v.id]:v
@@ -67,3 +66,20 @@ const mapById = (users:MyUser[]):Record<string,MyUser>=>{
 }
 
 // console.log(mapById([{id:"foo",name:"Mr. Foo"},{id:"Baz",name:"Mrs. Baz"}]))
+
+//Omit
+//complete opposite of Record
+//constructs a type by picking all properties from type and the nremoving keys
+//literal union of string literals
+
+const mapById2= (users:MyUser[]):Record<string,Omit<MyUser,"id">>=>{
+    return users.reduce((a,v)=>{
+        const {id,...other}=v
+        return {
+            ...a,
+            [id]:other
+        }
+    },{})
+}
+
+console.log(mapById2([{id:"foo",name:"Mr. Foo"},{id:"Baz",name:"Mrs. Baz"}]))
