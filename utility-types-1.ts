@@ -71,8 +71,8 @@ const mapById = (users:MyUser[]):Record<string,MyUser>=>{
 //complete opposite of Record
 //constructs a type by picking all properties from type and the nremoving keys
 //literal union of string literals
-
-const mapById2= (users:MyUser[]):Record<string,Omit<MyUser,"id">>=>{
+type MyUserNoID = Omit<MyUser,"id">
+const mapById2= (users:MyUser[]):Record<string,MyUserNoID>=>{
     return users.reduce((a,v)=>{
         const {id,...other}=v
         return {
@@ -83,3 +83,28 @@ const mapById2= (users:MyUser[]):Record<string,Omit<MyUser,"id">>=>{
 }
 
 console.log(mapById2([{id:"foo",name:"Mr. Foo"},{id:"Baz",name:"Mrs. Baz"}]))
+
+
+//type fields should be considered on Utility Types
+//it makes your code listen to the key not the type of key
+
+interface MyUser2 {
+    name:string;
+    id:number;
+    //this is an optional type we could put ? as optional
+    email?:string;
+}
+
+type MyUserNoID2 = Omit<MyUser2,"id">
+
+const mapById3= (users:MyUser2[]):Record<MyUser2["id"],MyUserNoID2>=>{
+    return users.reduce((a,v)=>{
+        const {id,...other}=v
+        return {
+            ...a,
+            [id]:other
+        }
+    },{})
+}
+
+console.log(mapById3([{id:2,name:"Mr. Foo"},{id:3,name:"Mrs. Baz"}]))
