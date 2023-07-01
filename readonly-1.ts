@@ -25,6 +25,14 @@ const makeCoordinate = (x:number,y:number,z:number):readonly[number,number,numbe
 }
 
 const c1 = makeCoordinate(10,20,30);
-c1[0]=50
 
 console.log(c1)
+
+//really const
+
+const reallyConst = [1,2,3];
+reallyConst[0]=50
+
+//array immmutability
+
+const reallyConst2 = [1,2,3] as const;
