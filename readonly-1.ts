@@ -6,7 +6,7 @@ interface Cat {
 //this makes the Cat to be read only
 type ReadOnlyCat = Readonly<Cat>
 
-const makeCat = (name:string,breed:string):Cat=>{
+const makeCat = (name:string,breed:string):ReadOnlyCat=>{
     return {
         name,
         breed
@@ -15,6 +15,6 @@ const makeCat = (name:string,breed:string):Cat=>{
 
 const usul = makeCat("Usul","Tabby")
 
-usul.name="Peter"
+
 
 console.log(usul)
