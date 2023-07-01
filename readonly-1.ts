@@ -18,3 +18,13 @@ const usul = makeCat("Usul","Tabby")
 
 
 console.log(usul)
+
+
+const makeCoordinate = (x:number,y:number,z:number):readonly[number,number,number]=>{
+    return [x,y,z]
+}
+
+const c1 = makeCoordinate(10,20,30);
+c1[0]=50
+
+console.log(c1)
